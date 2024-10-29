@@ -25,17 +25,22 @@ function shoppingCalculation(input) {
     
   }
   for (const [key, value] of Object.entries(bought)) {
-    let money = budget[key]
-    let curArr = []
-    let inc = value.slice(value.length - 4, value.length - 1)
-    curArr.push(key)
-    for(const [ky, val] of Object.entries(itemPrice)) {
-      if(key.includes(inc)) {
-        money
+    let person = key;
+    let money = Number(budget[person])
+    for (let i = 0; i < value.length; i++) {
+      let inc = value[i].slice(value[i].length - 4, value[i].length - 1)
+      for (const [ky, val] of Object.entries(itemPrice)) {
+        if(ky.includes(inc)) {
+          money -= Number(val) * Number(value[i].slice(0, 1))
+        }
       }
+      finalArr.push([person, `$${money}`, value.join(", ")])
     }
+    
+    
     
   }
   console.log(finalArr)
   console.log(itemPrice, budget, bought)
+  return finalArr
 }
