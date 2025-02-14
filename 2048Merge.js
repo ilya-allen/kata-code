@@ -1,4 +1,3 @@
-// valentines
 
 function merge(line) {
   let arr = line
